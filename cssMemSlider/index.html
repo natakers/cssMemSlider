@@ -7,6 +7,361 @@
     <title>Document</title>
 </head>
 <body>
+    <style>
+        * {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+
+
+.container {
+    width: 80vw;
+    padding: 50px;
+    margin: 0 auto;
+    background-color: #2F4F4F;
+
+}
+.wrapper {
+	/* width: 600px; */
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
     
+}
+
+.slider {
+	background-color: #ddd;
+	overflow: hidden;
+    display: flex;
+    width: 60vw;
+    height: 40vw;
+    align-self: center;
+	/* -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+	-moz-box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+	-o-box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+	box-shadow: 0 0 20px rgba(0, 0, 0, .5); */
+    display: flex;
+}
+
+.wrapper > input {
+	display: none;
+}
+
+.slides {
+    display: flex;
+    width: 100%;
+    height: auto;
+}
+
+.slides > img {
+    width: 100%;
+    height: auto;
+}
+
+.wrapper .controls {
+	/* margin-left: -98px; */
+    display: flex;
+    align-self: flex-end;
+}
+
+.wrapper label {
+	cursor: pointer;
+	display: inline-block;
+	height: 40px;
+	margin: 10px;
+    /* padding: 10px; */
+	width: 40px;
+    border: solid 10px #2F4F4F;
+    background: #3B5998;
+    box-sizing: border-box;
+    /* transform: scale(1); */
+    /* outline: solid 10px #3B5998; */
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-o-border-radius: 50%;
+	border-radius: 50%;
+	-webkit-transition: all ease-in-out .5s;
+	-moz-transition: all ease-in-out .5s;
+	-o-transition: all ease-in-out .5s;
+	transition: all ease-in-out .5s;
+}
+/* .wrapper label>div{
+    background-color: #3B5998;
+    border: solid 10px #2F4F4F;
+    width: 20px;
+    height: 20px;
+} */
+
+.wrapper label:hover {
+    background: #ddd;
+    /* transform: scale(1.1); */
+    /* outline: solid 2px #3B5998; */
+    border: solid 10px #2F4F4F;
+
+} 
+
+/* .wrapper label:after {
+	content: " ";
+	display: inline-block;
+    width: 40px;
+    height: 40px;  */
+    /* vertical-align: middle; */
+    /* float: left; */
+    /* margin-bottom: -20px; */
+    /* padding: 25px; */
+	/* -webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-o-border-radius: 50%;
+	border-radius: 50%; */
+/* } */
+
+
+
+.wrapper  label:nth-of-type(1)::before {
+    content: 'Best';
+    margin-left: -300px;
+    opacity: 0;
+    
+
+}
+.wrapper label:nth-of-type(2)::before {
+    content: 'Nice';
+    margin-left: -350px;
+    opacity: 0;
+
+}
+.wrapper label:nth-of-type(3)::before {
+    content: 'Sad';
+    margin-left: -400px;
+    opacity: 0;
+
+}
+.wrapper label:nth-of-type(4)::before {
+    content: 'Bad';
+    margin-left: -450px;
+    opacity: 0;
+
+}
+
+#slide1:checked ~ .controls label:nth-of-type(1)::before {
+    margin-left: -400px;
+    opacity: 1;
+    transition: all ease-in-out .5s;
+
+
+} 
+#slide2:checked ~ .controls label:nth-of-type(2)::before {
+    margin-left: -450px;
+    opacity: 1;
+    transition: all ease-in-out .5s;
+
+}
+#slide3:checked ~ .controls label:nth-of-type(3)::before {
+    margin-left: -500px;
+    opacity: 1;
+    transition: all ease-in-out .5s;
+
+}
+#slide4:checked ~ .controls label:nth-of-type(4)::before {
+    margin-left: -550px;
+    opacity: 1;
+    transition: all ease-in-out .5s;
+
+}
+
+.controls>div {
+    align-self: flex-start;
+    justify-self: start;
+    display: flex;
+}
+
+
+
+#slide1:checked ~ .controls label:nth-of-type(1),
+#slide2:checked ~ .controls label:nth-of-type(2),
+#slide3:checked ~ .controls label:nth-of-type(3),
+#slide4:checked ~ .controls label:nth-of-type(4) {
+	background: #ddd;
+    border: solid 10px #2F4F4F;
+    /* transform: scale(1); */
+    
+}
+
+#slide1:checked ~ .controls label:nth-of-type(1):hover,
+#slide2:checked ~ .controls label:nth-of-type(2):hover,
+#slide3:checked ~ .controls label:nth-of-type(3):hover,
+#slide4:checked ~ .controls label:nth-of-type(4):hover {
+	background: #ddd;
+    /* border: solid 10px #2F4F4F; */
+    /* transform: scale(1.1); */
+    
+}
+
+
+.slides {
+	/* opacity: 0; */
+	z-index: 0;
+    flex-basis: 0;
+	-webkit-transition: left linear .5s, opasity linear 2s;
+	-moz-transition: all linear .5s;
+	-o-transition: all linear .5s;
+	transition: all linear .5s, opasity linear 2s;
+}
+
+#slide1:checked ~ .slider > .slide1,
+#slide2:checked ~ .slider > .slide2,
+#slide3:checked ~ .slider > .slide3,
+#slide4:checked ~ .slider > .slide4 {
+	/* opacity: 1; */
+	/* z-index: 1; */
+    flex-basis: 100%;
+}
+
+.texts, .text {
+    display: none;
+}
+
+@media (max-width: 720px) {
+    .wrapper  label:nth-of-type(1)::before,
+.wrapper label:nth-of-type(2)::before,
+.wrapper label:nth-of-type(3)::before,
+.wrapper label:nth-of-type(4)::before {
+display: none;
+
+}
+
+.controls>div.labels {
+    align-self: center;
+}
+
+.texts {
+    display: flex;
+    width: 400%;
+    overflow: hidden;
+}
+
+.text {
+    /* width: 100%; */
+    display: flex;
+    transform: scale(1);
+    /* margin-left: 100%; */
+    opacity: 0;
+    transition: margin-left linear .5s, opacity linear 0.01s;
+}
+
+.controls {
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+}
+.text:nth-of-type(1) {
+    margin-left: 100%;
+}
+.text:nth-of-type(2) {
+    margin-left: 100%;
+}
+.text:nth-of-type(3) {
+    margin-left: 100%;
+}
+.text:nth-of-type(4) {
+    margin-left: 100%;
+}
+
+#slide4:checked ~ .controls .text:nth-of-type(4) {
+    /* display: flex; */
+    margin-left: -305%;
+    /* margin-right: 0; */
+    transform: scale(1.1);
+    opacity: 1;
+
+
+}
+
+
+#slide3:checked ~ .controls .text:nth-of-type(3) {
+    /* display: flex; */
+    margin-left: -203%;
+    transform: scale(1.1);
+    opacity: 1;
+
+
+}
+
+
+#slide2:checked ~ .controls .text:nth-of-type(2)
+ {
+    /* display: flex; */
+    margin-left: -101%;
+    opacity: 1;
+    transform: scale(1.1);
+
+
+}
+
+#slide1:checked ~ .controls .text:nth-of-type(1) {
+    /* display: flex; */
+    margin-left: 0;
+    opacity: 1;
+    transform: scale(1.1);
+
+
+}
+
+
+
+
+}
+
+
+    </style>
+    <div class="container">
+    <div class="wrapper">
+        <input type="radio" name="point" id="slide1" checked>
+        <input type="radio" name="point" id="slide2">
+        <input type="radio" name="point" id="slide3">
+        <input type="radio" name="point" id="slide4">
+        <div class="slider">
+            <div class="slides slide1">
+                <img src="images/1.jpg" alt="">
+            </div>
+            <div class="slides slide2">
+                <img src="images/2.jpg" alt="">
+
+            </div>
+            <div class="slides slide3">
+                <img src="images/3.jpg" alt="">
+            </div>
+            <div class="slides slide4">
+                <img src="images/4.jpg" alt="">
+            </div>
+        </div>	
+        <div class="controls">
+            <div class="labels">
+                <label for="slide1"></label>
+            
+            
+                <label for="slide2"></label>
+                
+                <label for="slide3"></label>
+                
+                <label for="slide4"></label>
+            </div>
+            <div class="texts">
+                <div class="text">Best</div>
+                <div class="text">Best1</div>
+                <div class="text">Best2</div>
+                <div class="text">Best3</div>
+            </div>
+
+    
+
+        </div>
+    </div>
+</div>
 </body>
 </html>
