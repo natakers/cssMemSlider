@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+         * {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+
+
+.container {
+    width: 80vw;
+    padding: 50px;
+    margin: 0 auto;
+    background-color: #2F4F4F;
+
+}
+.wrapper {
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    max-width: 60vw; 
+}
+
+.slider {
+	background-color: #ddd;
+	overflow: hidden;
+    display: flex;
+    width: 60vw;
+    height: 40vw;
+    align-self: center;
+    display: flex;
+}
+
+.wrapper > input {
+	display: none;
+}
+
+.slides {
+    display: flex;
+    width: 100%;
+    height: auto;
+}
+
+.slides > img {
+    width: 100%;
+    height: auto;
+}
+
+.wrapper .controls {
+    display: flex;
+    justify-content: space-between;
+}
+
+.labels {
+    display: flex;
+}
+
+.wrapper label {
+	cursor: pointer;
+	display: inline-block;
+	height: 2em;
+	margin: 0.5em;
+	width: 2em;
+    border: solid 10px #2F4F4F;
+    background: #3B5998;
+    box-sizing: border-box;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-o-border-radius: 50%;
+	border-radius: 50%;
+	-webkit-transition: all ease-in-out .5s;
+	-moz-transition: all ease-in-out .5s;
+	-o-transition: all ease-in-out .5s;
+	transition: all ease-in-out .5s;
+}
+
+
+.wrapper label:hover {
+    background: #ddd;
+    transform: scale(0.8);
+    border: solid 10px #2F4F4F;
+} 
+
+
+.controls>div {
+    align-self: center;
+    display: flex;
+}
+
+
+
+#slide1:checked ~ .controls label:nth-of-type(1),
+#slide2:checked ~ .controls label:nth-of-type(2),
+#slide3:checked ~ .controls label:nth-of-type(3),
+#slide4:checked ~ .controls label:nth-of-type(4) {
+	background: #ddd;
+    border: solid 10px #2F4F4F;
+    transform: scale(1); 
+}
+
+#slide1:checked ~ .controls label:nth-of-type(1):hover,
+#slide2:checked ~ .controls label:nth-of-type(2):hover,
+#slide3:checked ~ .controls label:nth-of-type(3):hover,
+#slide4:checked ~ .controls label:nth-of-type(4):hover {
+    transform: scale(0.8);
+}
+
+
+.slides {
+	z-index: 0;
+    flex-basis: 0;
+	-webkit-transition: left linear .5s, opasity linear 2s;
+	-moz-transition: all linear .5s;
+	-o-transition: all linear .5s;
+	transition: all linear .5s, opasity linear 2s;
+}
+
+#slide1:checked ~ .slider > .slide1,
+#slide2:checked ~ .slider > .slide2,
+#slide3:checked ~ .slider > .slide3,
+#slide4:checked ~ .slider > .slide4 {
+    flex-basis: 100%;
+}
+
+
+.texts {
+    display: flex;
+    width: 400%;
+    overflow: hidden;
+    order: -1;
+    align-self: baseline;
+}
+
+.text {
+    width: 100%;
+    display: flex;
+    opacity: 0;
+    order: 1;
+    transition: margin-left linear 0.5s, opacity linear 0.1s;
+}
+
+.text:nth-of-type(1),
+.text:nth-of-type(2),
+.text:nth-of-type(3),
+.text:nth-of-type(4) {
+    margin-left: 5em;
+}
+
+#slide4:checked ~ .controls .text:nth-of-type(4) {
+    opacity: 1;
+    order: -1;
+    margin-left: 0;
+}
+
+
+#slide3:checked ~ .controls .text:nth-of-type(3) {
+    opacity: 1;
+    order: -1;
+    margin-left: 0;
+}
+
+
+#slide2:checked ~ .controls .text:nth-of-type(2)
+ {
+    opacity: 1;
+    order: -1;
+    margin-left: 0;
+}
+
+#slide1:checked ~ .controls .text:nth-of-type(1) {
+    margin-left: 0;
+    opacity: 1;
+    order: -1;
+}
+
+@media (max-width: 570px) {
+    .wrapper  label:nth-of-type(1)::before,
+    .wrapper label:nth-of-type(2)::before,
+    .wrapper label:nth-of-type(3)::before,
+    .wrapper label:nth-of-type(4)::before {
+    display: none;
+}
+
+.controls>div.labels {
+    align-self: center;
+}
+
+.texts {
+    display: flex;
+    width: 400%;
+    overflow: hidden;
+    order: 2;
+}
+
+.text {
+    display: flex;
+    transform: scale(1);
+    opacity: 0;
+    transition: margin-left linear .5s, opacity linear 0.01s;
+}
+
+.controls {
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+ } 
+
+ .controls>div {
+     align-self: flex-start;
+ }
+
+}
+
+
+    </style>
+    <div class="container">
+    <div class="wrapper">
+        <input type="radio" name="point" id="slide1" checked>
+        <input type="radio" name="point" id="slide2">
+        <input type="radio" name="point" id="slide3">
+        <input type="radio" name="point" id="slide4">
+        <div class="slider">
+            <div class="slides slide1">
+                <img src="images/1.jpg" alt="">
+            </div>
+            <div class="slides slide2">
+                <img src="images/2.jpg" alt="">
+
+            </div>
+            <div class="slides slide3">
+                <img src="images/3.jpg" alt="">
+            </div>
+            <div class="slides slide4">
+                <img src="images/4.jpg" alt="">
+            </div>
+        </div>	
+        <div class="controls">
+            <div class="labels">
+                <label for="slide1"></label>
+            
+            
+                <label for="slide2"></label>
+                
+                <label for="slide3"></label>
+                
+                <label for="slide4"></label>
+            </div>
+            <div class="texts">
+                <div class="text">Slide1</div>
+                <div class="text">Slide2</div>
+                <div class="text">Slide3</div>
+                <div class="text">Slide4</div>
+            </div>
+
+    
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
